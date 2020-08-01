@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
 import { SearchData } from 'src/app/store';
-import { showAllData } from 'src/app/store/selectors/selector';
-import { pluck } from 'rxjs/operators';
+import { showAllData, getDataByID } from 'src/app/store/selectors/selector';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -12,6 +11,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
+  @Output() dataStream: EventEmitter<any> = new EventEmitter();
   public searchForm: FormGroup;
   public data$: Observable<{}>
 
@@ -20,6 +20,8 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.initialiseFormState();
+    this.urlParser();
+    this.getTableData();
   }
 
   private initialiseFormState(): void {
@@ -34,6 +36,33 @@ export class SearchComponent implements OnInit {
     return this.searchForm.controls;
   }
 
+  urlParser(): string[] {
+    const queryString = window.location.href;
+    let url = queryString.replace(/\//g, '');
+    let x = url.slice(20)
+    let y = x.split(':')
+    return y;
+  }
+
+  public getTableData(): void {
+    let payload = {
+      pitchID: parseInt(this.urlParser()[0]),
+      startDate: this.urlParser()[1],
+      endDate: this.urlParser()[2]
+    };
+    if(payload.endDate === undefined) {
+      return null
+    } else {
+      console.log(payload)
+
+      this._store.dispatch(new SearchData(payload));
+  
+      this.data$ = this._store.pipe(select(showAllData));
+      this.dataStream.emit(this.data$);
+    }
+
+  }
+
   public submitForm(): void {
 
     let payload = {
@@ -44,8 +73,9 @@ export class SearchComponent implements OnInit {
 
     this._store.dispatch(new SearchData(payload));
 
-    this.data$ = this._store.pipe(select(showAllData)).pipe(pluck('id'));
-    this.data$.subscribe(resp => console.log(resp));
+    this.data$ = this._store.pipe(select(showAllData));
+    this.dataStream.emit(this.data$);
+    window.location.href = `http://localhost:4200/:${payload.pitchID}/:${payload.startDate}/:${payload.endDate}`
 
   }
 

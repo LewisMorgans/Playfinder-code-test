@@ -1,63 +1,61 @@
 <div class="container mt-3">
-    <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
-        </tbody>
-      </table>
-      
-      <table class="table">
-        <thead class="thead-light">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
-        </tbody>
-      </table>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Slot ID</th>
+        <th scope="col">Start Date</th>
+        <th scope="col">Duration</th>
+        <th scope="col">GBP</th>
+        <th scope="col">EUR</th>
+        <th scope="col">Availabilities</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of dataStream$ | async">
+        <th scope="row" (click)="getValue($event)" data-toggle="modal" data-target=".bd-example-modal-lg">{{data?.id}}</th>
+        <td>{{data?.attributes.starts | date:'hh:mm dd/MM/yyyy' }}</td>
+        <td>1:30</td>
+        <td>{{data?.attributes.price | currency: 'GBP'}}</td>
+        <td>{{data?.attributes.price * 1.13 | currency: 'EUR'}}</td>
+        <td>{{data?.attributes.availabilities}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Slot ID</th>
+              <th scope="col">Admin Fee</th>
+              <th scope="col">Currency</th>
+              <th scope="col">Type</th>
+              <th scope="col">Price</th>
+              <th scope="col">Availabilities</th>
+              <th scope="col">Start Date</th>
+              <th scope="col">End Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>{{(data$ | async)?.id}}</th>
+              <td>{{(data$ | async)?.attributes.admin_fee}}</td>
+              <td>{{(data$ | async)?.attributes.currency}}</td>
+              <td>{{(data$ | async)?.type}}</td>
+              <td>{{(data$ | async)?.attributes.price}}</td>
+              <td>{{(data$ | async)?.attributes.availabilities}}</td>
+              <td>{{(data$ | async)?.attributes.starts | date:'hh:mm dd/MM/yyyy'}}</td>
+              <td>{{(data$ | async)?.attributes.ends | date:'hh:mm dd/MM/yyyy'}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>

@@ -22,13 +22,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({store}),
+    StoreModule.forRoot({ store }),
     EffectsModule.forRoot([DataEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
-    }),
-  ],
+    })  ],
   providers: [],
   bootstrap: [AppComponent]
 })

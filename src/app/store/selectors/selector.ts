@@ -14,3 +14,18 @@ export const showAllData = createSelector(
         }
     }
 );
+
+export const getDataByID = (param) => createSelector(
+    getState,
+    data => {
+        let result;
+        Object.entries(data).map(([key, value]) => {
+             value.map(data => {
+                if (data.id == param) {
+                    result = data
+                }
+            });
+        })
+        return result;
+    }
+);

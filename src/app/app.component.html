@@ -1,2 +1,2 @@
-<app-search></app-search>
-<app-results></app-results>
+<app-search (dataStream)="searchedData$=$event"></app-search>
+<app-results [dataStream$]="searchedData$"></app-results>
