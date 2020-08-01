@@ -1,20 +1,27 @@
-import { SearchActionTypes } from '../actions/actions';
+import { SearchActionTypes, DataType } from '../actions/actions';
 import { ActionReducer, Action } from '@ngrx/store';
 
-export let initialState = {
+export interface ActionWithPayload<T> extends Action {
+    payload: T;
+}
 
+export interface State {
+    data: object
+}
+
+export const initialState: State = {
+    data: [null]
 };
 
-export const store: ActionReducer<any> = (state = initialState, action: Action) => {
+export const store: ActionReducer<any> = (state = initialState, action: ActionWithPayload<DataType>) => {
     switch (action.type) {
         case SearchActionTypes.SEARCH_DATA: {
             return state
         }
         case SearchActionTypes.SAVE_DATA: {
-            console.log('action: ', action)
             return {
-                ...state, // setting state to nothing? wrong or right? am I mutating?
-                action
+                ...state,
+                data: action.payload
             }
         }
         default: {

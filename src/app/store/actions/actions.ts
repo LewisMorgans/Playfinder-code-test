@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store'
 
-type DataType = {
+export class DataType {
     pitchID: number;
     startDate: string;
     endDate: string;
