@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -6,13 +6,10 @@ import { Observable } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
-  title = 'playfinder';
-  public searchedData$: Observable<{}>
+export class AppComponent {
+  
+  public searchedData$: Observable<{}> // what type?
  
   constructor() {}
 
-  ngOnInit() {
-
-  }
 }

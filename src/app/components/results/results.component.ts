@@ -1,9 +1,9 @@
-import { Component, OnInit, Input, TemplateRef, ViewChild } from '@angular/core';
+import { Component, Input, } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { getDataByID } from 'src/app/store';
 
-export interface test  {
+export interface test  { // move to shared file?
   id: string,
   type: string,
   attributes: object
@@ -14,27 +14,16 @@ export interface test  {
   templateUrl: './results.component.html',
   styleUrls: ['./results.component.css']
 })
-export class ResultsComponent implements OnInit {
+export class ResultsComponent {
  
   @Input() dataStream$: Observable<{}>
-
-
   public data$: Observable<test>;
 
-  constructor(private readonly _store: Store<any>,
-    ) { }
-
-  ngOnInit(): void {
-  }
-
-
+  constructor(private readonly _store: Store<any>) { }
 
   public getValue(event): void {
-    this.data$ = this._store.pipe(select(getDataByID(event.target.innerHTML)));
-    console.log(this.data$)
-    
-    this.data$.subscribe(resp => console.log(resp))
-    
+    this.data$ = this._store.pipe(select(getDataByID(event.target.innerHTML)));    
+    this.data$.subscribe(resp => console.log(resp)) // needed?
   }
 
 }

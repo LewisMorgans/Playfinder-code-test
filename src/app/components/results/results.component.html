@@ -12,7 +12,8 @@
     </thead>
     <tbody>
       <tr *ngFor="let data of dataStream$ | async">
-        <th scope="row" (click)="getValue($event)" data-toggle="modal" data-target=".bd-example-modal-lg">{{data?.id}}</th>
+        <th scope="row" (click)="getValue($event)" data-toggle="modal" data-target=".bd-example-modal-lg">{{data?.id}}
+        </th>
         <td>{{data?.attributes.starts | date:'hh:mm dd/MM/yyyy' }}</td>
         <td>1:30</td>
         <td>{{data?.attributes.price | currency: 'GBP'}}</td>
@@ -23,9 +24,9 @@
   </table>
 </div>
 
-
-
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<!-- modal -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-body">
