@@ -1,10 +1,5 @@
 import { Action } from '@ngrx/store'
-
-export class DataType {
-    pitchID: number;
-    startDate: string;
-    endDate: string;
-}
+import { DataType } from '../shared';
 
 export enum SearchActionTypes {
     SEARCH_DATA = '[SEARCH_DATA]',

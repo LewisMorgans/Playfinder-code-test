@@ -1,13 +1,6 @@
-import { SearchActionTypes, DataType } from './actions';
-import { ActionReducer, Action } from '@ngrx/store';
-
-export interface ActionWithPayload<T> extends Action {
-    payload: T;
-}
-
-export interface State {
-    data: []
-}
+import { SearchActionTypes } from './actions';
+import { ActionReducer } from '@ngrx/store';
+import { DataType, State, ActionWithPayload } from '../shared';
 
 export const initialState: State = {
     data: []

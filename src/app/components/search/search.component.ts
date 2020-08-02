@@ -15,6 +15,7 @@ export class SearchComponent implements OnInit {
   @Output() dataStream: EventEmitter<any> = new EventEmitter();
   public searchForm: FormGroup;
   public data$: Observable<{}>
+  public queryString = window.location.href
 
   constructor(
     private readonly _fb: FormBuilder,
@@ -39,10 +40,10 @@ export class SearchComponent implements OnInit {
   }
 
   private urlParser(): string[] {
-    const queryString = window.location.href;
-    let url = queryString.replace(/\//g, '');
-    let x = url.slice(20)
-    let y = x.split(':')
+    // this.queryString = window.location.href;
+    let url = this.queryString.replace(/\//g, '');
+    let x = url.slice(20);
+    let y = x.split(':');
     return y;
   }
 
@@ -53,11 +54,9 @@ export class SearchComponent implements OnInit {
       startDate: this.urlParser()[1],
       endDate: this.urlParser()[2]
     };
-
     if (payload.endDate === undefined) { // reformat?
       return null
     } else {
-
       this._store.dispatch(new SearchData(payload));
       this.data$ = this._store.pipe(select(showAllData));
       this.dataStream.emit(this.data$);

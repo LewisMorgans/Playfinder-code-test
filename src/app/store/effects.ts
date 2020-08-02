@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { ofType, Actions, Effect } from '@ngrx/effects';
 import { map, switchMap, catchError } from 'rxjs/operators';
-import { SaveData, SearchActionTypes, DataType } from './actions';
+import { SaveData, SearchActionTypes } from './actions';
 import { HttpClient } from '@angular/common/http';
-import { ActionWithPayload } from './reducer';
+import { DataType, ActionWithPayload } from '../shared';
 
 @Injectable()
 export class DataEffects {
