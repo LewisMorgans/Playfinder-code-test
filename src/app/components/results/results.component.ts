@@ -23,7 +23,7 @@ export class ResultsComponent {
 
   public getValue(event): void {
     this.data$ = this._store.pipe(select(getDataByID(event.target.innerHTML)));    
-    this.data$.subscribe(resp => console.log(resp)) // needed?
+    this.data$.subscribe(resp => resp) // needed?
   }
 
 }

@@ -1,4 +1,4 @@
-import { SearchActionTypes, DataType } from '../actions/actions';
+import { SearchActionTypes, DataType } from './actions';
 import { ActionReducer, Action } from '@ngrx/store';
 
 export interface ActionWithPayload<T> extends Action {

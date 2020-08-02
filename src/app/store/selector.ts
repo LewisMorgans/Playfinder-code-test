@@ -1,12 +1,11 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
-import { State } from '../reducers/reducer'
+import { State } from './reducer'
 
 export const getState = createFeatureSelector<State>('store');
 
 export const showAllData = createSelector(
     getState,
     data => {
-        console.log(data)
         if (data[0] === null) {
             console.warn('no data')
         } else {
@@ -15,13 +14,15 @@ export const showAllData = createSelector(
     }
 );
 
-export const getDataByID = (param) => createSelector(
+export const getDataByID = (id) => createSelector(
     getState,
     data => {
         let result;
         Object.entries(data).map(([key, value]) => {
              value.map(data => {
-                if (data.id == param) {
+                 console.log('param: ', id);
+                 console.log('data.ids: ', data.id);
+                if (data.id === id) {
                     result = data
                 }
             });
