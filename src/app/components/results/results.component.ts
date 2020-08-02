@@ -2,12 +2,7 @@ import { Component, Input, } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { getDataByID } from 'src/app/store';
-
-export interface test  { // move to shared file?
-  id: string,
-  type: string,
-  attributes: object
-}
+import { DataObj } from 'src/app/shared';
 
 @Component({
   selector: 'app-results',
@@ -16,9 +11,10 @@ export interface test  { // move to shared file?
 })
 export class ResultsComponent {
  
-  @Input() dataStream$: Observable<{}>
-  public data$: Observable<test>;
+  @Input() dataStream$: Observable<DataObj>
+  public data$: Observable<DataObj>;
   public id: string;
+  
   constructor(private readonly _store: Store<any>) { }
 
   public getValue(event): void {

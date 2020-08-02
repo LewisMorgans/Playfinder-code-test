@@ -3,7 +3,7 @@ import { ofType, Actions, Effect } from '@ngrx/effects';
 import { map, switchMap, catchError } from 'rxjs/operators';
 import { SaveData, SearchActionTypes } from './actions';
 import { HttpClient } from '@angular/common/http';
-import { DataType, ActionWithPayload } from '../shared';
+import { PitchData, ActionWithPayload } from '../shared';
 
 @Injectable()
 export class DataEffects {
@@ -14,7 +14,7 @@ export class DataEffects {
     @Effect()
     searchAPIData$ = this.actions$.pipe(
         ofType(SearchActionTypes.SEARCH_DATA),
-        switchMap<ActionWithPayload<DataType>, any>(action => {
+        switchMap<ActionWithPayload<PitchData>, any>(action => {
             return this._http.get(`https://api-v2.pfstaging.xyz/pitches/${action.payload.pitchID}/slots?filter%5Bstarts%5D=${action.payload.startDate}&filter%5Bends%5D=${action.payload.endDate}`).pipe(
                 map((response: any) => new SaveData(response.data)),
                 catchError(err => {

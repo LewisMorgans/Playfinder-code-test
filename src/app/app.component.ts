@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
+import { DataObj } from './shared';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent {
   
-  public searchedData$: Observable<{}> // what type?
+  public searchedData$: Observable<DataObj>
  
   constructor() {}
 

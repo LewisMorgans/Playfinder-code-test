@@ -14,7 +14,7 @@ export class SearchComponent implements OnInit {
 
   @Output() dataStream: EventEmitter<any> = new EventEmitter();
   public searchForm: FormGroup;
-  public data$: Observable<{}>
+  public data$: Observable<[]>
   public queryString = window.location.href
 
   constructor(
@@ -24,7 +24,7 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
     this.initialiseFormState();
     this.urlParser();
-    this.getTableData();
+    this.getTargetData();
   }
 
   private initialiseFormState(): void {
@@ -40,14 +40,13 @@ export class SearchComponent implements OnInit {
   }
 
   private urlParser(): string[] {
-    // this.queryString = window.location.href;
-    let url = this.queryString.replace(/\//g, '');
-    let x = url.slice(20);
-    let y = x.split(':');
-    return y;
+    let target = this.queryString.replace(/\//g, '');
+    let url = target.slice(20);
+    let parameters = url.split(':');
+    return parameters;
   }
 
-  public getTableData(): void {
+  public getTargetData(): void {
 
     let payload = {
       pitchID: parseInt(this.urlParser()[0]),
@@ -64,7 +63,7 @@ export class SearchComponent implements OnInit {
 
   }
 
-  public submitForm(): void {
+  public retrieveData(): void {
 
     let payload = {
       pitchID: this.form.id.value,

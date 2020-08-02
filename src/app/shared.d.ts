@@ -1,6 +1,6 @@
 import { Action } from "@ngrx/store";
 
-export class DataType {
+export class PitchData {
     pitchID: number;
     startDate: string;
     endDate: string;
@@ -13,3 +13,9 @@ export interface ActionWithPayload<T> extends Action {
 export interface State {
     data: []
 }
+
+export interface DataObj  { 
+    id: string,
+    type: string,
+    attributes: object
+  }

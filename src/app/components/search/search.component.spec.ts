@@ -52,7 +52,7 @@ describe('SearchComponent', () => {
 
   it('Should strip the properties from the URL', () => {
     let dispatchSpy = spyOn(store, 'dispatch');
-    component.getTableData();
+    component.getTargetData();
     expect(dispatchSpy).not.toHaveBeenCalled();
 
     component.queryString = 'http://localhost:4200/:32990/:2020-01-01/:2020-02-01';
@@ -76,7 +76,7 @@ describe('SearchComponent', () => {
     spyOn(component.dataStream, 'emit');
     component.ngOnInit();
     component.searchForm = mockForm;
-    component.submitForm();
+    component.retrieveData();
     expect(dispatchSpy).toHaveBeenCalled();
     expect(component.data$).toBeInstanceOf(Observable);
     expect(component.dataStream.emit).toHaveBeenCalledWith(component.data$)

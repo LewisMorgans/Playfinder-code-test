@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store'
-import { DataType } from '../shared';
+import { PitchData } from '../shared';
 
 export enum SearchActionTypes {
     SEARCH_DATA = '[SEARCH_DATA]',
@@ -8,12 +8,12 @@ export enum SearchActionTypes {
 
 export class SearchData implements Action {
     readonly type = SearchActionTypes.SEARCH_DATA;
-    constructor(public payload: DataType) { };
+    constructor(public payload: PitchData) { };
 }
 
 export class SaveData implements Action {
     readonly type = SearchActionTypes.SAVE_DATA;
-    constructor(public payload: DataType) { }; 
+    constructor(public payload: PitchData) { }; 
 }
 
 export type SearchActions = SearchData | SaveData
