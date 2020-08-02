@@ -22,8 +22,8 @@ export class ResultsComponent {
   constructor(private readonly _store: Store<any>) { }
 
   public getValue(event): void {
-    this.data$ = this._store.pipe(select(getDataByID(event.target.innerHTML)));    
-    this.data$.subscribe(resp => resp) // needed?
+    let id = event.target.innerHTML.trim();
+    this.data$ = this._store.pipe(select(getDataByID(id)));    
   }
 
 }

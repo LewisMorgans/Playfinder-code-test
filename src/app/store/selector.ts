@@ -5,28 +5,13 @@ export const getState = createFeatureSelector<State>('store');
 
 export const showAllData = createSelector(
     getState,
-    data => {
-        if (data[0] === null) {
-            console.warn('no data')
-        } else {
-            return data.data
-        }
-    }
+    state => state.data
 );
 
 export const getDataByID = (id) => createSelector(
     getState,
-    data => {
-        let result;
-        Object.entries(data).map(([key, value]) => {
-             value.map(data => {
-                 console.log('param: ', id);
-                 console.log('data.ids: ', data.id);
-                if (data.id === id) {
-                    result = data
-                }
-            });
-        })
-        return result;
+    state => {
+        const data = Object.values(state.data) || [];
+        return data.find(entity => id === entity.id)
     }
 );

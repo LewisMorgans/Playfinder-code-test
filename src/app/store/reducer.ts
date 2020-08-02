@@ -6,11 +6,11 @@ export interface ActionWithPayload<T> extends Action {
 }
 
 export interface State {
-    data: object
+    data: []
 }
 
 export const initialState: State = {
-    data: [null]
+    data: []
 };
 
 export const store: ActionReducer<any> = (state = initialState, action: ActionWithPayload<DataType>) => {
