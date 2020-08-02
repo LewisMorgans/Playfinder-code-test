@@ -13,7 +13,7 @@ export class SearchData implements Action {
 
 export class SaveData implements Action {
     readonly type = SearchActionTypes.SAVE_DATA;
-    constructor(public payload: DataType) { }; // don't know what comes back yet
+    constructor(public payload: DataType) { }; 
 }
 
 export type SearchActions = SearchData | SaveData
