@@ -35,7 +35,6 @@ describe('ResultsComponent', () => {
   });
 
   it('Should set the id to the event value', () => {
-
     expect(component.id).toEqual(undefined);
     component.getValue(event);
     expect(component.id).toEqual('teststring')

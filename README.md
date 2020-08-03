@@ -1,27 +1,8 @@
 # Playfinder
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.6.
+In order to test the application, enter the Pitch ID: 32990 with a date in the past, in a given range of 14 days.
+To view specific data, mouse click on the ID provided in the table, which will present a modal with the target data.
+If there was more time, there are several actions I would take to improve the application. Such as adding pagination, checking deep equality in component unit tests and refactoring the functions 
+within the search component. [GetTargetData] and [RetrieveData] are not following the DRY principles. I would like to refactor this in order to improve code quality and efficiency. I would also have created a calculation function to parse the returned dates and calculate a duration value; alas I wasn't given this instruction until the deadline date had already been met.
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+In order to complete the bonus objective I had to design my application as NGRX first, influencing my time management to other features such as pagination. The application is fully state manageable with appropriate scaffolding to be extended in the future.

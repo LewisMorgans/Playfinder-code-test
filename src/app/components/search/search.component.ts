@@ -14,8 +14,8 @@ export class SearchComponent implements OnInit {
 
   @Output() dataStream: EventEmitter<any> = new EventEmitter();
   public searchForm: FormGroup;
-  public data$: Observable<[]>
-  public queryString = window.location.href
+  public data$: Observable<[]>;
+  public queryString = window.location.href;
 
   constructor(
     private readonly _fb: FormBuilder,
@@ -53,8 +53,8 @@ export class SearchComponent implements OnInit {
       startDate: this.urlParser()[1],
       endDate: this.urlParser()[2]
     };
-    if (payload.endDate === undefined) { // reformat?
-      return null
+    if (payload.endDate === undefined) {
+      throw new Error('Unable to get data');
     } else {
       this._store.dispatch(new SearchData(payload));
       this.data$ = this._store.pipe(select(showAllData));
