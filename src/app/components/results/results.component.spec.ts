@@ -27,7 +27,7 @@ describe('ResultsComponent', () => {
       target: {
         innerHTML: 'teststring '
       }
-    }
+    };
   }));
 
   it('should create', () => {
@@ -37,12 +37,12 @@ describe('ResultsComponent', () => {
   it('Should set the id to the event value', () => {
     expect(component.id).toEqual(undefined);
     component.getValue(event);
-    expect(component.id).toEqual('teststring')
+    expect(component.id).toEqual('teststring');
   });
 
   it('Should set the data$ observable to the NGRX selector value', () => {
     expect(component.data$).toEqual(undefined);
     component.getValue(event);
     expect(component.data$).toBeInstanceOf(Observable);
-  })
+  });
 });

@@ -7,9 +7,9 @@ import { DataObj } from './shared';
   templateUrl: './app.component.html'
 })
 export class AppComponent {
-  
-  public searchedData$: Observable<DataObj>
- 
+
+  public searchedData$: Observable<DataObj>;
+
   constructor() {}
 
 }

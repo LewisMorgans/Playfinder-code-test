@@ -43,5 +43,5 @@ describe('Search Data Reducer', () => {
         };
         const store = reducers.store(initialState, action);
         expect(store).toEqual(newState);
-    })
+    });
 });

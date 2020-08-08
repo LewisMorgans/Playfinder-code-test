@@ -9,7 +9,7 @@ describe('Selector tests', () => {
                 { id: '14567', startDate: '2018-01-01', endDate: '2019-01-01' }
             ]
         };
-        expect(selectors.showAllData.projector(state)).toEqual(jasmine.objectContaining(state.data))
+        expect(selectors.showAllData.projector(state)).toEqual(jasmine.objectContaining(state.data));
     });
 
     it('should return the data based on ID passed in', () => {
@@ -20,6 +20,6 @@ describe('Selector tests', () => {
                 { id: '14567', startDate: '2018-01-01', endDate: '2019-01-01' }
             ]
         };
-        expect(selectors.getDataByID('67891').projector(state)).toEqual(state.data[1])
+        expect(selectors.getDataByID('67891').projector(state)).toEqual(state.data[1]);
     });
 });

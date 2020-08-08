@@ -11,7 +11,7 @@ import { DataObj } from 'src/app/shared';
 })
 export class ResultsComponent {
 
-  @Input() dataStream$: Observable<any>
+  @Input() dataStream$: Observable<any>;
   public data$: Observable<DataObj>;
   public id: string;
 

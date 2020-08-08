@@ -4,6 +4,7 @@ import { Store, select } from '@ngrx/store';
 import { SearchData } from 'src/app/store';
 import { showAllData } from 'src/app/store/selector';
 import { Observable } from 'rxjs';
+import { PitchData } from 'src/app/shared';
 
 @Component({
   selector: 'app-search',
@@ -16,6 +17,8 @@ export class SearchComponent implements OnInit {
   public searchForm: FormGroup;
   public data$: Observable<[]>;
   public queryString = window.location.href;
+  public parsedURL = [];
+  private payload: PitchData;
 
   constructor(
     private readonly _fb: FormBuilder,
@@ -40,15 +43,15 @@ export class SearchComponent implements OnInit {
   }
 
   private urlParser(): string[] {
-    let target = this.queryString.replace(/\//g, '');
-    let url = target.slice(20);
-    let parameters = url.split(':');
-    return parameters;
+    const target = this.queryString.replace(/\//g, '');
+    const url = target.slice(20);
+    this.parsedURL = url.split(':');
+    return this.parsedURL;
   }
 
   public getTargetData(): void {
 
-    let payload = {
+    const payload = {
       pitchID: parseInt(this.urlParser()[0]),
       startDate: this.urlParser()[1],
       endDate: this.urlParser()[2]
@@ -65,7 +68,7 @@ export class SearchComponent implements OnInit {
 
   public retrieveData(): void {
 
-    let payload = {
+    const payload = {
       pitchID: this.form.id.value,
       startDate: this.form.startDate.value,
       endDate: this.form.endDate.value
@@ -74,8 +77,9 @@ export class SearchComponent implements OnInit {
     this._store.dispatch(new SearchData(payload));
     this.data$ = this._store.pipe(select(showAllData));
     this.dataStream.emit(this.data$);
-    window.location.href = `http://localhost:4200/:${payload.pitchID}/:${payload.startDate}/:${payload.endDate}`
+    window.location.href = `http://localhost:4200/:${payload.pitchID}/:${payload.startDate}/:${payload.endDate}`;
 
   }
+
 
 }

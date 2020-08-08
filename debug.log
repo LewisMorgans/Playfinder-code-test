@@ -1,0 +1,3 @@
+[0808/153550.436:ERROR:file_io_win.cc(161)] CreateFile C:\Users\lmorg\AppData\Local\Temp\karma-96664722\Crashpad\settings.dat: The system cannot find the file specified. (0x2)
+[0808/153550.437:ERROR:file_io_win.cc(170)] CreateFile C:\Users\lmorg\AppData\Local\Temp\karma-96664722\Crashpad\reports\848e9b3c-8d56-4053-97e7-60129c31d092.dmp: The system cannot find the path specified. (0x3)
+[0808/153550.437:ERROR:crash_report_exception_handler.cc(97)] PrepareNewCrashReport failed

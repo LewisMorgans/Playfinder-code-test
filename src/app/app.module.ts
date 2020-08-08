@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { StoreModule } from "@ngrx/store";
+import { StoreModule } from '@ngrx/store';
 import { store } from './store/reducer';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';

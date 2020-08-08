@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import { ofType, Actions, Effect } from '@ngrx/effects';
 import { map, switchMap, catchError } from 'rxjs/operators';
 import { SaveData, SearchActionTypes } from './actions';
@@ -9,7 +9,7 @@ import { PitchData, ActionWithPayload } from '../shared';
 export class DataEffects {
 
     constructor(private readonly _http: HttpClient,
-        private readonly actions$: Actions) { }
+                private readonly actions$: Actions) { }
 
     @Effect()
     searchAPIData$ = this.actions$.pipe(
@@ -20,7 +20,7 @@ export class DataEffects {
                 catchError(err => {
                     throw new Error('Unable to make sufficient request');
                 })
-            )
+            );
         })
-    )
+    );
 }

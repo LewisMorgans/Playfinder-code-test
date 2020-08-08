@@ -9,19 +9,19 @@ export const initialState: State = {
 export const store: ActionReducer<any> = (state = initialState, action: ActionWithPayload<PitchData>) => {
     switch (action.type) {
         case SearchActionTypes.SEARCH_DATA: {
-            return state
+            return state;
         }
         case SearchActionTypes.SAVE_DATA: {
             return {
                 ...state,
                 data: action.payload
-            }
+            };
         }
         default: {
             return state;
         }
     }
-}
+};
 
 
 

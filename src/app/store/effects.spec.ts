@@ -1,7 +1,7 @@
-import { Observable, of } from "rxjs";
+import { Observable, of } from 'rxjs';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { TestBed } from "@angular/core/testing";
+import { TestBed } from '@angular/core/testing';
 import { DataEffects } from './effects';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { Action } from '@ngrx/store';
@@ -22,7 +22,7 @@ describe('AppEffects', () => {
                 provideMockStore({ initialState }),
             ],
         }).compileComponents();
-        effects = TestBed.get(DataEffects);
+        effects = TestBed.inject(DataEffects);
         httpMock = TestBed.inject(HttpTestingController);
         store = TestBed.inject(MockStore);
     });
@@ -41,7 +41,7 @@ describe('AppEffects', () => {
         const req = httpMock.expectOne({
             url: `https://api-v2.pfstaging.xyz/pitches/${params.pitchID}/slots?filter%5Bstarts%5D=${params.startDate}&filter%5Bends%5D=${params.endDate}`,
             method: 'GET'
-        })
+        });
         req.flush({});
     });
 
