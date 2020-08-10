@@ -6,13 +6,12 @@ export const getState = createFeatureSelector<State>('store');
 export const showAllData = createSelector(
     getState,
     state => state.data
-
 );
 
-export const getDataByID = (id) => createSelector(
+export const getDataByID = createSelector(
     getState,
-    state => {
-        const data = Object.values(state.data) || [];
-        return data.find(entity => id === entity.id);
+    (state, props) => {
+        const data = Object.values(state.data);
+        return data.find((element: any) => props.id === element.id)
     }
 );

@@ -27,7 +27,7 @@ describe('AppEffects', () => {
         store = TestBed.inject(MockStore);
     });
 
-    it('Should make a request to the API', (done) => {
+    fit('Should make a request to the API', (done) => {
 
         const params = {
             pitchID: 32990,
@@ -36,13 +36,16 @@ describe('AppEffects', () => {
         };
 
         actions$ = of({ type: '[SEARCH_DATA]', payload: params });
-        effects.searchAPIData$.subscribe(_ => done());
+        effects.searchAPIData$.subscribe(r => {
+            console.log(r);
+            done();
+        });
 
         const req = httpMock.expectOne({
             url: `https://api-v2.pfstaging.xyz/pitches/${params.pitchID}/slots?filter%5Bstarts%5D=${params.startDate}&filter%5Bends%5D=${params.endDate}`,
             method: 'GET'
         });
-        req.flush({});
+        req.flush(params);
     });
 
     afterEach(() => {

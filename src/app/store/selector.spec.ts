@@ -13,6 +13,9 @@ describe('Selector tests', () => {
     });
 
     it('should return the data based on ID passed in', () => {
+        const props = {
+            id: '67891'
+        }
         const state = {
             data: [
                 { id: '12345', startDate: '2018-01-01', endDate: '2019-01-01' },
@@ -20,6 +23,8 @@ describe('Selector tests', () => {
                 { id: '14567', startDate: '2018-01-01', endDate: '2019-01-01' }
             ]
         };
-        expect(selectors.getDataByID('67891').projector(state)).toEqual(state.data[1]);
+        const result = state.data[1]
+
+        expect(selectors.getDataByID.projector(state, props)).toEqual(jasmine.objectContaining(result));
     });
 });

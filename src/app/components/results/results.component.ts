@@ -12,7 +12,7 @@ import { DataObj } from 'src/app/shared';
 export class ResultsComponent {
 
   @Input() dataStream$: Observable<any>;
-  public data$: Observable<DataObj>;
+  public data$: Observable<any>;
   public id: string;
 
   constructor(private readonly _store: Store<any>) { }
@@ -20,7 +20,8 @@ export class ResultsComponent {
 
   public getValue(event): void {
     this.id = event.target.innerHTML.trim();
-    this.data$ = this._store.pipe(select(getDataByID(this.id)));
+    console.log(this.id)
+    this.data$ = this._store.pipe(select(getDataByID, { id: this.id }));
   }
 
 }
